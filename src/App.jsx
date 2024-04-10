@@ -1,8 +1,10 @@
 import "./App.css";
+import { random_hex_color } from "./utils";
 
 function ColorPicker(props) {
   /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
   const { label, id, name } = props;
+  console.log(random_hex_color());
   return (
     <div className="color-picker">
       <label htmlFor="primarycolor">{label}</label>
