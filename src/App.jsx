@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { init_color_pickers } from "./utils";
+import { init_color_picker, init_color_pickers } from "./utils";
 import "./App.css";
 
 function ColorPicker(props) {
@@ -24,6 +24,11 @@ function ColorPicker(props) {
 function App() {
   const [colors, setColors] = useState(init_color_pickers(4));
 
+  const addColor = (colors) => {
+    let updated = [...colors]; // Credits: https://stackoverflow.com/a/71250303/1929820
+    updated.push(init_color_picker(colors.length)); // just trust me :)
+    setColors(updated);
+  };
   return (
     <>
       <div className="container">
@@ -41,7 +46,7 @@ function App() {
           .map((color) => (
             <ColorPicker key={color.id} {...color} />
           ))}
-        <button onClick={() => setColors([])}>Add color</button>
+        <button onClick={() => addColor(colors)}>Add color</button>
         <p>
           3. Ready? Just press <strong>Beautify</strong>.
         </p>
