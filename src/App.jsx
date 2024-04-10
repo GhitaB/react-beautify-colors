@@ -22,18 +22,37 @@ function ColorPicker(props) {
 }
 
 function App() {
-  const data = {
-    label: "Primary color: ",
-    id: "primary-color",
-    name: "primary-color",
-  };
+  const initial_colors = [
+    {
+      label: "Primary color: ",
+      id: "primary-color",
+      name: "primary-color",
+    },
+    {
+      label: "Bla: ",
+      id: "bla-color",
+      name: "bla-color",
+    },
+  ];
+  const [colors, setColors] = useState(initial_colors);
 
-  const data_bla = {
-    label: "Bla: ",
-    id: "bla-color",
-    name: "bla-color",
-  };
-
+  const test_colors = [
+    {
+      label: "Primary color: ",
+      id: "primary-color",
+      name: "primary-color",
+    },
+    {
+      label: "Bla: ",
+      id: "bla-color",
+      name: "bla-color",
+    },
+    {
+      label: "Bla2: ",
+      id: "bla-color2",
+      name: "bla-color2",
+    },
+  ];
   return (
     <>
       <div className="container">
@@ -42,12 +61,13 @@ function App() {
           1. <strong>Pick your main color.</strong> It will be used as reference
           to harmonize the other colors.
         </p>
-        <ColorPicker {...data} />
+        <ColorPicker {...colors[0]} />
         <p>
           2. Now add <strong>secondary colors</strong>.
         </p>
-        <ColorPicker {...data_bla} />
-        <p>TODO ADD</p>
+        <ColorPicker {...colors[1]} />
+        {colors.length > 2 && <ColorPicker {...colors[2]} />}
+        <button onClick={() => setColors(test_colors)}>Add color</button>
         <p>
           3. Ready? Just press <strong>Beautify</strong>.
         </p>
