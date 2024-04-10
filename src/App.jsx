@@ -1,14 +1,22 @@
-import "./App.css";
+import { useState } from "react";
 import { random_hex_color } from "./utils";
+import "./App.css";
 
 function ColorPicker(props) {
   /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
   const { label, id, name } = props;
-  const color = random_hex_color();
+  const [color, setColor] = useState(random_hex_color());
+  // Credits for on change: https://stackoverflow.com/a/59939918/1929820
   return (
     <div className="color-picker">
       <label htmlFor="primarycolor">{label}</label>
-      <input type="color" id={id} name={name} value={color} />
+      <input
+        type="color"
+        id={id}
+        name={name}
+        value={color}
+        onChange={(e) => setColor(e.target.value)}
+      />
     </div>
   );
 }
