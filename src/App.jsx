@@ -54,6 +54,7 @@ function App() {
         <p>
           4. <strong>Copy</strong> the colors.
         </p>
+        <p>The colors are: {colors.map((color) => color.value + " ")}</p>
         <p>
           5. Try <strong>again</strong> with other colors.
         </p>
