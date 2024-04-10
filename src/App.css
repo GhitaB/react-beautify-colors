@@ -12,3 +12,8 @@ button {
   background: #111 !important;
   color: #eee;
 }
+
+div.color-picker {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}

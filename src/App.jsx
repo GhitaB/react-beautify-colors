@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { random_hex_color } from "./utils";
+import { init_color_pickers } from "./utils";
 import "./App.css";
 
 function ColorPicker(props) {
   /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
-  const { label, id, name } = props;
-  const [color, setColor] = useState(random_hex_color());
+  const { label, id, name, value } = props;
+  const [color, setColor] = useState(value);
   // Credits for on change: https://stackoverflow.com/a/59939918/1929820
   return (
     <div className="color-picker">
-      <label htmlFor="primarycolor">{label}</label>
+      <label htmlFor={name}>{label}</label>
       <input
         type="color"
         id={id}
@@ -22,37 +22,8 @@ function ColorPicker(props) {
 }
 
 function App() {
-  const initial_colors = [
-    {
-      label: "Primary color: ",
-      id: "primary-color",
-      name: "primary-color",
-    },
-    {
-      label: "Bla: ",
-      id: "bla-color",
-      name: "bla-color",
-    },
-  ];
-  const [colors, setColors] = useState(initial_colors);
+  const [colors, setColors] = useState(init_color_pickers(4));
 
-  const test_colors = [
-    {
-      label: "Primary color: ",
-      id: "primary-color",
-      name: "primary-color",
-    },
-    {
-      label: "Bla: ",
-      id: "bla-color",
-      name: "bla-color",
-    },
-    {
-      label: "Bla2: ",
-      id: "bla-color2",
-      name: "bla-color2",
-    },
-  ];
   return (
     <>
       <div className="container">
@@ -65,9 +36,12 @@ function App() {
         <p>
           2. Now add <strong>secondary colors</strong>.
         </p>
-        <ColorPicker {...colors[1]} />
-        {colors.length > 2 && <ColorPicker {...colors[2]} />}
-        <button onClick={() => setColors(test_colors)}>Add color</button>
+        {colors
+          .filter((colors, index) => index > 0)
+          .map((color) => (
+            <ColorPicker key={color.id} {...color} />
+          ))}
+        <button onClick={() => setColors([])}>Add color</button>
         <p>
           3. Ready? Just press <strong>Beautify</strong>.
         </p>
