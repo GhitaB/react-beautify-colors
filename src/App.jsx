@@ -4,9 +4,13 @@ import "./App.css";
 
 function ColorPicker(props) {
   /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
-  const { label, id, name, value, removeColor } = props;
+  const { label, id, name, value, removeColor, onChange } = props;
   const [color, setColor] = useState(value);
   // Credits for on change: https://stackoverflow.com/a/59939918/1929820
+
+  const handleColorChange = (new_color) => {
+    onChange(new_color);
+  };
   return (
     <div className="color-picker">
       <label htmlFor={name}>{label}</label>
@@ -15,7 +19,10 @@ function ColorPicker(props) {
         id={id}
         name={name}
         value={color}
-        onChange={(e) => setColor(e.target.value)}
+        onChange={(e) => {
+          setColor(e.target.value);
+          handleColorChange(e.target.value);
+        }}
       />
       {id !== "color-0" && (
         <button onClick={() => removeColor(id)}>Remove</button>
@@ -47,6 +54,22 @@ function App() {
     setColors((prevItems) => prevItems.filter((color) => color.id !== id));
   };
 
+  const handleColorChange = (id, new_color) => {
+    // Credits: ChatGPT for finding the color having the id and update the item
+    const color_index = colors.findIndex((color) => color.id === id);
+
+    if (color_index !== -1) {
+      const updated_colors = [...colors];
+
+      updated_colors[color_index] = {
+        ...updated_colors[color_index],
+        value: new_color,
+      };
+
+      setColors(updated_colors);
+    }
+  };
+
   return (
     <>
       <div className="container">
@@ -55,14 +78,22 @@ function App() {
           1. <strong>Pick your main color.</strong> It will be used as reference
           to harmonize the other colors.
         </p>
-        <ColorPicker {...colors[0]} />
+        <ColorPicker
+          {...colors[0]}
+          onChange={(new_color) => handleColorChange("color-0", new_color)}
+        />
         <p>
           2. Now add <strong>secondary colors</strong>.
         </p>
         {colors
           .filter((colors, index) => index > 0)
           .map((color) => (
-            <ColorPicker key={color.id} {...color} removeColor={removeColor} />
+            <ColorPicker
+              key={color.id}
+              {...color}
+              removeColor={removeColor}
+              onChange={(new_color) => handleColorChange(color.id, new_color)}
+            />
           ))}
         <button onClick={() => addColor(colors)}>Add color</button>
         <p>
