@@ -17,3 +17,12 @@ div.color-picker {
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
+div.color-picker button {
+  font-size: 0.7em;
+  margin-left: 0.5em;
+  position: relative;
+  top: -4px;
+  background: #bbb !important;
+  color: #111;
+}
