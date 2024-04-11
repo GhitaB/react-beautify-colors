@@ -24,6 +24,13 @@ function ColorPicker(props) {
   );
 }
 
+function ColorsList(colors) {
+  const colors_array = Object.values(colors); // Credits: ChatGPT
+  return (
+    <p>The colors are: {colors_array.map((color) => color.value + " ")}</p>
+  );
+}
+
 function App() {
   const number_of_colors = 4;
   const [colors, setColors] = useState(init_color_pickers(number_of_colors));
@@ -65,7 +72,7 @@ function App() {
         <p>
           4. <strong>Copy</strong> the colors.
         </p>
-        <p>The colors are: {colors.map((color) => color.value + " ")}</p>
+        <ColorsList {...colors} />
         <p>
           5. Try <strong>again</strong> with other colors.
         </p>
