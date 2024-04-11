@@ -4,7 +4,7 @@ import "./App.css";
 
 function ColorPicker(props) {
   /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
-  const { label, id, name, value } = props;
+  const { label, id, name, value, removeColor } = props;
   const [color, setColor] = useState(value);
   // Credits for on change: https://stackoverflow.com/a/59939918/1929820
   return (
@@ -17,6 +17,7 @@ function ColorPicker(props) {
         value={color}
         onChange={(e) => setColor(e.target.value)}
       />
+      <button onClick={() => removeColor(id)}>Remove</button>
     </div>
   );
 }
@@ -29,6 +30,11 @@ function App() {
     updated.push(init_color_picker(colors.length)); // just trust me :)
     setColors(updated);
   };
+
+  const removeColor = (id) => {
+    setColors((prevItems) => prevItems.filter((color) => color.id !== id));
+  };
+
   return (
     <>
       <div className="container">
@@ -44,7 +50,7 @@ function App() {
         {colors
           .filter((colors, index) => index > 0)
           .map((color) => (
-            <ColorPicker key={color.id} {...color} />
+            <ColorPicker key={color.id} {...color} removeColor={removeColor} />
           ))}
         <button onClick={() => addColor(colors)}>Add color</button>
         <p>
