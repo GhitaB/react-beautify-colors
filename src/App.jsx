@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { init_color_picker, init_color_pickers } from "./utils";
+import { beautify } from "./beautify";
 import { ColorPicker } from "./ColorPicker";
 import { ColorsList } from "./ColorsList";
 import "./App.css";
@@ -36,6 +37,10 @@ function App() {
     }
   };
 
+  const beautifyColors = (colors) => {
+    beautify(colors);
+  };
+
   return (
     <>
       <div className="container">
@@ -65,7 +70,7 @@ function App() {
         <p>
           3. Ready? Just press <strong>Beautify</strong>.
         </p>
-        <button>Beautify</button>
+        <button onClick={() => beautifyColors(colors)}>Beautify</button>
         <p>
           4. <strong>Copy</strong> the colors.
         </p>
