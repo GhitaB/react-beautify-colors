@@ -1,4 +1,4 @@
-import { hex_to_rgb } from "./utils";
+import { hex_to_rgb, rgb_to_hsl } from "./utils";
 
 export const beautify = (colors) => {
   console.log("TODO beautify colors");
@@ -10,7 +10,7 @@ export const beautify = (colors) => {
   let list_of_hex_colors = colors.map((color) => color.value);
   console.log(list_of_hex_colors);
 
-  // 2. Convert to RGB ========================================================
+  // 2. Convert HEX to RGB ====================================================
   // Example:
   // [
   //     [
@@ -32,6 +32,11 @@ export const beautify = (colors) => {
   // --------------------------------------------------------------------------
   let list_of_rgb_colors = list_of_hex_colors.map((color) => hex_to_rgb(color));
   console.log(list_of_rgb_colors);
+
+  // 3. Convert RGB to HSL ====================================================
+  // --------------------------------------------------------------------------
+  let list_of_hsl_colors = list_of_rgb_colors.map((color) => rgb_to_hsl(color));
+  console.log(list_of_hsl_colors);
 
   let updated_colors = [];
   return updated_colors;

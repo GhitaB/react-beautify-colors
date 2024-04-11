@@ -45,3 +45,7 @@ export const hex_to_rgb = (hex) => {
       ]
     : null;
 };
+
+export const rgb_to_hsl = (r, g, b) => {
+  return "TODO";
+};
