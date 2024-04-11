@@ -38,7 +38,8 @@ function App() {
   };
 
   const beautifyColors = (colors) => {
-    beautify(colors);
+    const updated_colors = beautify(colors);
+    console.log(updated_colors);
   };
 
   return (
