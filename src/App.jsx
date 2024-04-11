@@ -17,7 +17,9 @@ function ColorPicker(props) {
         value={color}
         onChange={(e) => setColor(e.target.value)}
       />
-      <button onClick={() => removeColor(id)}>Remove</button>
+      {id !== "color-0" && (
+        <button onClick={() => removeColor(id)}>Remove</button>
+      )}
     </div>
   );
 }
