@@ -23,12 +23,15 @@ function ColorPicker(props) {
 }
 
 function App() {
-  const [colors, setColors] = useState(init_color_pickers(4));
+  const number_of_colors = 4;
+  const [colors, setColors] = useState(init_color_pickers(number_of_colors));
+  const [colorsIndex, setColorsIndex] = useState(number_of_colors);
 
   const addColor = (colors) => {
     let updated = [...colors]; // Credits: https://stackoverflow.com/a/71250303/1929820
-    updated.push(init_color_picker(colors.length)); // just trust me :)
+    updated.push(init_color_picker(colorsIndex));
     setColors(updated);
+    setColorsIndex(colorsIndex + 1);
   };
 
   const removeColor = (id) => {
