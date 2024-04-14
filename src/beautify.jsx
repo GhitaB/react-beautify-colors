@@ -1,14 +1,11 @@
 import { hex_to_rgb, rgb_to_hsl } from "./utils";
 
 export const beautify = (colors) => {
-  console.log("TODO beautify colors");
-  console.log(colors);
-
   // 1. HEX colors ============================================================
   // Example: ['#3b374d', '#1c34b6', '#115bba']
   // --------------------------------------------------------------------------
   let list_of_hex_colors = colors.map((color) => color.value);
-  console.log(list_of_hex_colors);
+  console.log("HEX: ", list_of_hex_colors);
 
   // 2. Convert HEX to RGB ====================================================
   // Example:
@@ -31,13 +28,32 @@ export const beautify = (colors) => {
   // ]
   // --------------------------------------------------------------------------
   let list_of_rgb_colors = list_of_hex_colors.map((color) => hex_to_rgb(color));
-  console.log(list_of_rgb_colors);
+  console.log("RGB: ", list_of_rgb_colors);
 
   // 3. Convert RGB to HSL ====================================================
+  // Example:
+  // [
+  //     [
+  //         0.6969696969696969,
+  //         0.16666666666666663,
+  //         0.2588235294117647
+  //     ],
+  //     [
+  //         0.6406926406926406,
+  //         0.7333333333333335,
+  //         0.4117647058823529
+  //     ],
+  //     [
+  //         0.5936883629191322,
+  //         0.8325123152709359,
+  //         0.3980392156862745
+  //     ]
+  // ]
   // --------------------------------------------------------------------------
   let list_of_hsl_colors = list_of_rgb_colors.map((color) => rgb_to_hsl(color));
-  console.log(list_of_hsl_colors);
+  console.log("HSL: ", list_of_hsl_colors);
 
+  console.log("TODO beautify colors");
   let updated_colors = [];
   return updated_colors;
 };

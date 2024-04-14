@@ -46,6 +46,38 @@ export const hex_to_rgb = (hex) => {
     : null;
 };
 
-export const rgb_to_hsl = (r, g, b) => {
-  return "TODO";
+// Credits: https://github.com/GhitaB/beautify-colors/blob/master/script.js#L74C1-L93C5
+// Credits: https://stackoverflow.com/a/39147465/1929820 (This is amazing.)
+export const rgb_to_hsl = (rgb_color) => {
+  let r = rgb_color[0];
+  let g = rgb_color[1];
+  let b = rgb_color[2];
+
+  (r /= 255), (g /= 255), (b /= 255);
+  var max = Math.max(r, g, b),
+    min = Math.min(r, g, b);
+  var h,
+    s,
+    l = (max + min) / 2;
+
+  if (max == min) {
+    h = s = 0; // achromatic
+  } else {
+    var d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h = (b - r) / d + 2;
+        break;
+      case b:
+        h = (r - g) / d + 4;
+        break;
+    }
+    h /= 6;
+  }
+
+  return [h, s, l];
 };
