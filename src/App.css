@@ -26,3 +26,13 @@ div.color-picker button {
   background: #bbb !important;
   color: #111;
 }
+
+div.colors-container {
+  width: 100%;
+}
+
+div.colors-container div.col-left,
+div.colors-container div.col-right {
+  width: 50%;
+  float: left;
+}

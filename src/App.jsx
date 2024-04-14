@@ -39,7 +39,7 @@ function App() {
 
   const beautifyColors = (colors) => {
     const updated_colors = beautify(colors);
-    console.log(updated_colors);
+    console.log("BEST: ", updated_colors);
   };
 
   return (
@@ -72,10 +72,19 @@ function App() {
           3. Ready? Just press <strong>Beautify</strong>.
         </p>
         <button onClick={() => beautifyColors(colors)}>Beautify</button>
+        <div className="colors-container">
+          <div className="col-left">
+            <p>Original colors</p>
+            <ColorsList {...colors} />
+          </div>
+          <div className="col-right">
+            <p>Improved colors</p>
+            <ColorsList {...colors} />
+          </div>
+        </div>
         <p>
           4. <strong>Copy</strong> the colors.
         </p>
-        <ColorsList {...colors} />
         <p>
           5. Try <strong>again</strong> with other colors.
         </p>

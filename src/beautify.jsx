@@ -64,6 +64,6 @@ export const beautify = (colors) => {
   console.log("Back to HEX: ", test_list_hex);
 
   console.log("TODO beautify colors");
-  let updated_colors = [];
+  let updated_colors = test_list_hex;
   return updated_colors;
 };
