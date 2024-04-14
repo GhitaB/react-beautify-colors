@@ -125,3 +125,8 @@ export const rgb_to_hex = (rgb_color) => {
   const b = rgb_color[2];
   return "#" + component_to_hex(r) + component_to_hex(g) + component_to_hex(b);
 };
+
+export const maximize_saturation = (hsl_color) => {
+  hsl_color[1] = 1;
+  return rgb_to_hex(hsl_to_rgb(hsl_color));
+};

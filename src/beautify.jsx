@@ -1,4 +1,10 @@
-import { hex_to_rgb, rgb_to_hsl, hsl_to_rgb, rgb_to_hex } from "./utils";
+import {
+  hex_to_rgb,
+  rgb_to_hsl,
+  hsl_to_rgb,
+  rgb_to_hex,
+  maximize_saturation,
+} from "./utils";
 
 export const beautify = (colors) => {
   // 1. HEX colors ============================================================
@@ -63,12 +69,13 @@ export const beautify = (colors) => {
   let test_list_hex = test_list_rgb.map((color) => rgb_to_hex(color));
   console.log("Back to HEX: ", test_list_hex);
 
+  let updated_colors = list_of_hex_colors;
+  // ## 1. Maximize saturation for primary color.
+  updated_colors[0] = maximize_saturation(list_of_hsl_colors[0]);
+
   /* TODO: Beautify the colors
-  ## 1. Maximize saturation for primary color.
   ## 2. Calculate hue distance on color wheel for all secondary colors.
   ## 3. Update saturation for all secondary colors (~ gamut masking).
   */
-
-  let updated_colors = test_list_hex;
   return updated_colors;
 };
