@@ -133,11 +133,11 @@ export const maximize_saturation = (hsl_color) => {
 
 // Credits: ChatGPT
 export const hue_distance_of_hsl_colors = (hsl_color_1, hsl_color_2) => {
-  // hue = 0 .. 360
+  // hue = 0 .. 1, but * 360 to have the wheel
   // hue distance = 0 .. 180
   // normalized hue distance = 0 .. 1
-  const hue1 = hsl_color_1[0];
-  const hue2 = hsl_color_2[0];
+  const hue1 = hsl_color_1[0] * 360;
+  const hue2 = hsl_color_2[0] * 360;
   let hue_difference = Math.abs(hue1 - hue2);
   if (hue_difference > 180) {
     hue_difference = 360 - hue_difference;
