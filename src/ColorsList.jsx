@@ -1,6 +1,9 @@
 export function ColorsList(colors) {
   const colors_array = Object.values(colors); // Credits: ChatGPT
   // Credits: ChatGPT for this amazing list of colors view, too.
+  if (colors_array.length === 0) {
+    return <p>First press Beautify.</p>;
+  }
   return (
     <div>
       {colors_array.map((color) => (

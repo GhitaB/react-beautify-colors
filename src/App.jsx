@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { init_color_picker, init_color_pickers } from "./utils";
+import { init_color, init_colors } from "./utils";
 import { beautify } from "./beautify";
 import { ColorPicker } from "./ColorPicker";
 import { ColorsList } from "./ColorsList";
@@ -7,12 +7,13 @@ import "./App.css";
 
 function App() {
   const number_of_colors = 4;
-  const [colors, setColors] = useState(init_color_pickers(number_of_colors));
+  const [colors, setColors] = useState(init_colors(number_of_colors));
   const [colorsIndex, setColorsIndex] = useState(number_of_colors);
+  const [improvedColors, setImprovedColors] = useState([]);
 
   const addColor = (colors) => {
     let updated = [...colors]; // Credits: https://stackoverflow.com/a/71250303/1929820
-    updated.push(init_color_picker(colorsIndex));
+    updated.push(init_color(colorsIndex));
     setColors(updated);
     setColorsIndex(colorsIndex + 1);
   };
@@ -38,8 +39,14 @@ function App() {
   };
 
   const beautifyColors = (colors) => {
-    const updated_colors = beautify(colors);
-    console.log("BEST: ", updated_colors);
+    const updated_colors_hex = beautify(colors);
+    console.log("BEST: ", updated_colors_hex);
+    const improved_colors = [];
+    let index = 1000;
+    for (let value of updated_colors_hex) {
+      improved_colors.push(init_color(index, value));
+    }
+    setImprovedColors(improved_colors);
   };
 
   return (
@@ -79,15 +86,9 @@ function App() {
           </div>
           <div className="col-right">
             <p>Improved colors</p>
-            <ColorsList {...colors} />
+            <ColorsList {...improvedColors} />
           </div>
         </div>
-        <p>
-          4. <strong>Copy</strong> the colors.
-        </p>
-        <p>
-          5. Try <strong>again</strong> with other colors.
-        </p>
       </div>
     </>
   );
