@@ -45,6 +45,7 @@ function App() {
     let index = 1000;
     for (let value of updated_colors_hex) {
       improved_colors.push(init_color(index, value));
+      index += 1;
     }
     setImprovedColors(improved_colors);
   };
