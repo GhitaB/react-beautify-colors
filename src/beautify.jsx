@@ -63,7 +63,12 @@ export const beautify = (colors) => {
   let test_list_hex = test_list_rgb.map((color) => rgb_to_hex(color));
   console.log("Back to HEX: ", test_list_hex);
 
-  console.log("TODO beautify colors");
+  /* TODO: Beautify the colors
+  ## 1. Maximize saturation for primary color.
+  ## 2. Calculate hue distance on color wheel for all secondary colors.
+  ## 3. Update saturation for all secondary colors (~ gamut masking).
+  */
+
   let updated_colors = test_list_hex;
   return updated_colors;
 };

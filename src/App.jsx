@@ -47,6 +47,7 @@ function App() {
       improved_colors.push(init_color(index, value));
       index += 1;
     }
+    console.log("IMPROVED", improved_colors);
     setImprovedColors(improved_colors);
   };
 
