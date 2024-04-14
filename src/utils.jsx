@@ -109,3 +109,15 @@ export const hsl_to_rgb = (hsl_color) => {
 
   return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 };
+
+export const component_to_hex = (c) => {
+  let hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+};
+
+export const rgb_to_hex = (rgb_color) => {
+  const r = rgb_color[0];
+  const g = rgb_color[1];
+  const b = rgb_color[2];
+  return "#" + component_to_hex(r) + component_to_hex(g) + component_to_hex(b);
+};
