@@ -1,4 +1,4 @@
-import { hex_to_rgb, rgb_to_hsl } from "./utils";
+import { hex_to_rgb, rgb_to_hsl, hsl_to_rgb } from "./utils";
 
 export const beautify = (colors) => {
   // 1. HEX colors ============================================================
@@ -52,6 +52,11 @@ export const beautify = (colors) => {
   // --------------------------------------------------------------------------
   let list_of_hsl_colors = list_of_rgb_colors.map((color) => rgb_to_hsl(color));
   console.log("HSL: ", list_of_hsl_colors);
+
+  // 4. Convert HSL to RGB ====================================================
+  // Credits: https://github.com/GhitaB/beautify-colors/blob/master/script.js#L96C12-L96C22
+  let test_list_rgb = list_of_hsl_colors.map((color) => hsl_to_rgb(color));
+  console.log("Back to RGB: ", test_list_rgb);
 
   console.log("TODO beautify colors");
   let updated_colors = [];
