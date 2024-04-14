@@ -126,8 +126,10 @@ export const rgb_to_hex = (rgb_color) => {
   return "#" + component_to_hex(r) + component_to_hex(g) + component_to_hex(b);
 };
 
-export const maximize_saturation = (hsl_color) => {
-  hsl_color[1] = 1;
+export const update_saturation = (hsl_color, saturation) => {
+  // Usually we have a HSL color and we need to update its saturation and
+  // export as HEX color.
+  hsl_color[1] = saturation;
   return rgb_to_hex(hsl_to_rgb(hsl_color));
 };
 

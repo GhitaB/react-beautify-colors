@@ -3,7 +3,7 @@ import {
   rgb_to_hsl,
   hsl_to_rgb,
   rgb_to_hex,
-  maximize_saturation,
+  update_saturation,
   hue_distance_of_hsl_colors,
 } from "./utils";
 
@@ -72,7 +72,7 @@ export const beautify = (colors) => {
 
   let updated_colors = list_of_hex_colors;
   // ## 1. Maximize saturation for primary color.
-  updated_colors[0] = maximize_saturation(list_of_hsl_colors[0]);
+  updated_colors[0] = update_saturation(list_of_hsl_colors[0], 1);
 
   // ## 2. Calculate hue distance on color wheel for all secondary colors.
   for (let hsl_color of list_of_hsl_colors) {
@@ -82,8 +82,20 @@ export const beautify = (colors) => {
     );
   }
 
-  /* TODO: Beautify the colors
-  ## 3. Update saturation for all secondary colors (~ gamut masking).
-  */
+  // ## 3. Update saturation for all secondary colors (~ gamut masking).
+  for (
+    let color_index = 1;
+    color_index < updated_colors.length;
+    color_index++
+  ) {
+    updated_colors[color_index] = update_saturation(
+      list_of_hsl_colors[color_index],
+      1 -
+        hue_distance_of_hsl_colors(
+          list_of_hsl_colors[0],
+          list_of_hsl_colors[color_index],
+        ),
+    );
+  }
   return updated_colors;
 };
