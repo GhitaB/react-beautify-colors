@@ -18,6 +18,10 @@ function App() {
     setColorsIndex(colorsIndex + 1);
   };
 
+  const invalidateImprovedColors = () => {
+    setImprovedColors([]);
+  };
+
   const removeColor = (id) => {
     setColors((prevItems) => prevItems.filter((color) => color.id !== id));
   };
@@ -35,6 +39,7 @@ function App() {
       };
 
       setColors(updated_colors);
+      invalidateImprovedColors();
     }
   };
 
@@ -86,10 +91,12 @@ function App() {
             <p>Original colors</p>
             <ColorsList {...colors} />
           </div>
-          <div className="col-right">
-            <p>Improved colors</p>
-            <ColorsList {...improvedColors} />
-          </div>
+          {improvedColors.length > 0 && (
+            <div className="col-right">
+              <p>Improved colors</p>
+              <ColorsList {...improvedColors} />
+            </div>
+          )}
         </div>
       </div>
     </>
