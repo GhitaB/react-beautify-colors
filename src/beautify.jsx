@@ -5,6 +5,7 @@ import {
   rgb_to_hex,
   update_saturation,
   hue_distance_of_hsl_colors,
+  optimized_saturation,
 } from "./utils";
 
 export const beautify = (colors) => {
@@ -88,13 +89,16 @@ export const beautify = (colors) => {
     color_index < updated_colors.length;
     color_index++
   ) {
+    let improved_saturation = optimized_saturation(
+      hue_distance_of_hsl_colors(
+        list_of_hsl_colors[0],
+        list_of_hsl_colors[color_index],
+      ),
+    );
+    console.log("IMPROVED SATURATION: ", improved_saturation);
     updated_colors[color_index] = update_saturation(
       list_of_hsl_colors[color_index],
-      1 -
-        hue_distance_of_hsl_colors(
-          list_of_hsl_colors[0],
-          list_of_hsl_colors[color_index],
-        ),
+      improved_saturation,
     );
   }
   return updated_colors;

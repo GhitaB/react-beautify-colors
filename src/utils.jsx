@@ -147,3 +147,9 @@ export const hue_distance_of_hsl_colors = (hsl_color_1, hsl_color_2) => {
   let normalized_hue_distance = hue_difference / 180;
   return normalized_hue_distance;
 };
+
+export const optimized_saturation = (hue_distance) => {
+  // Make the colors great again
+  const beauty = 1.3; // TODO: experiment, and find the best value
+  return 1 - hue_distance / beauty;
+};
